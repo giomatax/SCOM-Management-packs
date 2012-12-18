@@ -101,16 +101,14 @@
                 </SnmpVarBinds>
               </ProbeAction>
               <ConditionDetection ID="FilterOnObjectID" TypeID="System!System.ExpressionFilter">
-                <Expression>
-                  <SimpleExpression>
+                       <Expression>
+                  <RegExExpression>
                     <ValueExpression>
-                      <XPathQuery Type="Integer">SnmpVarBinds/SnmpVarBind[OID=".1.3.6.1.2.1.1.2.0"]/Value</XPathQuery>
+                      <XPathQuery Type="String">SnmpVarBinds/SnmpVarBind[OID=".1.3.6.1.2.1.1.2.0"]/Value</XPathQuery>
                     </ValueExpression>
-                    <Operator>Equal</Operator>
-                    <ValueExpression>
-                      <Value Type="Integer">$Config/ObjectID$</Value>
-                    </ValueExpression>
-                  </SimpleExpression>
+                    <Operator>MatchesRegularExpression</Operator>
+                    <Pattern>$Config/ObjectID$</Pattern>
+                  </RegExExpression>
                 </Expression>
               </ConditionDetection>
               <ConditionDetection ID="MapToDiscovery" TypeID="System!System.Discovery.ClassSnapshotDataMapper">
